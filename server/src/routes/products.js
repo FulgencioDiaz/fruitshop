@@ -28,7 +28,7 @@ router.post(
 
 
 
-    const product = new Product({ name, price,  image, cloudinaryId });
+    const product = new Product({ name, price, image, cloudinaryId });
     await product.save();
 
     res.send(product);
