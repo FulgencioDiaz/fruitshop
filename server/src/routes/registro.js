@@ -3,7 +3,8 @@ const { User, validateBody } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
-/* router.post("/registro", validateBody, async (req, res) => {
+router.post("/registro", validateBody, async (req, res) => {
+
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send("El usuario ya está registrado");
 
@@ -19,6 +20,6 @@ const router = express.Router();
   const token = user.generateToken();
   res.header("x-auth-token", token).send("Usuario autentificado");
 
-}); */
+});
 
 module.exports = router;

@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  surname: {
+    type:String,
+    required: false,
+  },
   email: {
     type: String,
     required: true,
@@ -19,12 +23,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   isAdmin: Boolean,
+
+  legalID: {
+    type:String,
+    required: true,
+  },
+
 });
 
 userSchema.methods.generateToken = function () {
   return jwt.sign(
-    _.pick(this, ["_id", "name", "isAdmin"]),
+    _.pick(this, ["_id", "name", "isAdmin", "legalID","password","email", "surname"]),
     config.get("jwtPrivateKey")
   );
 };
@@ -45,6 +56,11 @@ const reqSchema = Joi.object({
   isAdmin: Joi.boolean()
     .required()
     .messages({ "any.required": `El campo "Admin" es requerido` }),
+    legalID: Joi.string()
+    .required()
+    .messages({ "any.required": `El campo "de DNI/CIF" es requerido` }),
+    surname: Joi.string(),
+
 });
 
 exports.User = User;

@@ -24,7 +24,8 @@ const Products = () => {
   return (
     <>
       <h2>
-      <Link to="/products/list"> Todos los productos</Link><Link to="/new-product">Nuevo Product</Link>
+      <Link to="/products/list"> Todos los productos</Link> 
+      <Link to="/new-product">Nuevo Product</Link>
       </h2>
       <Row xs={1} md={2} className="g-4">
         {products.map((product) => (

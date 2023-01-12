@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import ImageViewer from 'react-simple-image-viewer';
 
 
-const Home = () => {
+const Registro = () => {
     const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const images = [
@@ -132,4 +132,4 @@ const Home = () => {
     );
   };
   
-  export default Home;
+  export default Registro;

@@ -17,12 +17,12 @@
   text-align:center;
 }
 .color-nav {
-background-color:rgba(255, 225, 0, 0.562);
-
+background-color:rgba(255, 226, 10, 0.854);
 
 }
+
 .formDiv{
-  border: solid rgba(255, 225, 0, 0.562) 24px;
+  border: solid rgba(255, 226, 10, 0.854) 24px;
   width: 700px;
   height: auto;
   border-radius: 18px;
