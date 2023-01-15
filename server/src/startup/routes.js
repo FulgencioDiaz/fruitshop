@@ -27,6 +27,8 @@ module.exports = function (app) {
   
   app.post("/registro", registro);
 
+
+
   app.get("/ping", (req, res) => {
     res.send("pong");
   });

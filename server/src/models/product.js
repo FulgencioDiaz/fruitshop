@@ -6,6 +6,7 @@ const createUploader = require("../utils/multer");
 const cloudinary = require("../utils/cloudinary");
 
 const productSchema = new mongoose.Schema({
+
   name: {
     type: String,
     required: true,
@@ -21,8 +22,8 @@ const productSchema = new mongoose.Schema({
   },
   cloudinaryId: {
     type: String,
-    required: true,
-  },
+    required: false,
+  }
 });
 
 const Product = mongoose.model("Product", productSchema);
@@ -40,7 +41,9 @@ const reqSchema = Joi.object({
     .required()
     .messages({ "any.required": `El campo "price" es requerido` }),
  
-  file: Joi.object().required().messages({
+  file: Joi.object()
+  .required()
+  .messages({
     "any.required": `El campo "image" es requerido`,
   }),
 });

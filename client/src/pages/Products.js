@@ -23,13 +23,10 @@ const Products = () => {
 
   return (
     <>
-      <h2>
-      <Link to="/products/list"> Todos los productos</Link> 
-      <Link to="/new-product">Nuevo Product</Link>
-      </h2>
-      <Row xs={1} md={2} className="g-4">
+  
+      <Row xs={1} md={4} className="g-4">
         {products.map((product) => (
-          <Product
+          <Product className="product-card"
             key={product._id}
             {...product}
           />

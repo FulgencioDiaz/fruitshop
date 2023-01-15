@@ -1,3 +1,4 @@
+
 .leaflet-container {
     width: 100vh;
     height: 80vh;
@@ -18,7 +19,14 @@
 }
 .color-nav {
 background-color:rgba(255, 226, 10, 0.854);
+height: 70px;
 
+}
+.nav-img{
+  height: 80px;
+  width: 220px;
+  mask-position: 20px;
+  border-radius:20px 100px 15px 150px;
 }
 
 .formDiv{
@@ -44,5 +52,20 @@ background-color:rgba(255, 226, 10, 0.854);
   width:auto;
   height: auto;
   margin-top: 50px;
+}
+.card-img-top{
+  width: 180px;
+  height: 180px;
 
+}
+.text-of-product{
+  display:flex;
+  justify-content:flex-end;
+  align-items: center;
+}
+.card-img-top{
+  max-width:100%;
+  max-height:100%;
+  margin-left: 5px;
+  margin-top: 5px;
 }
