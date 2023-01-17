@@ -9,13 +9,13 @@ import {
   MDBRow,
   MDBCol,
   MDBInput,
-  MDBCheckbox
+  
 }
 from 'mdb-react-ui-kit';
 
 
 
-const apiEndpoint = `http://localhost:3000/products/`;
+const apiEndpoint = `http://localhost:3000/users/`;
 
 const Auth = () => {
      

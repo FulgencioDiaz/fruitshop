@@ -28,7 +28,8 @@
     "multer-storage-cloudinary": "^4.0.0",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
-    "winston-mongodb": "^5.1.0"
+    "winston-mongodb": "^5.1.0",
+    "cors": "^2.8.5"
     
   }
 }

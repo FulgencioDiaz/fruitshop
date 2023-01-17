@@ -93,8 +93,8 @@ const Registro = () => {
         <Form.Label>Password*</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
-     <p> * Campos obligarorios</p>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+     
+      <Form.Group className="mb-3" controlId="formBasicCheckbox"><p> * Campos obligarorios</p>
         <Form.Check type="checkbox" label="Acepto la política de privacidad" />
       </Form.Group>
       

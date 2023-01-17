@@ -5,6 +5,8 @@ import Product from "../components/Product";
 
 import axios from "axios";
 
+
+
 const apiEndpoint = `http://localhost:3000/products/`;
 
 const Products = () => {

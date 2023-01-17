@@ -5,41 +5,47 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBeer, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import AuthConsumer from "../hooks/useAuth";
+
 
 const NavBar = () => {
+  const [{ isAuth, isAdmin }] = AuthConsumer();
   return (
     <Navbar className="color-nav" >
-      <Container className="d-flex">
+    <Container fluid>
         <Link className="navbar-brand" to="/">
-         PAPAYAPP
+          FRUITShop
         </Link>
         <Nav className="me-auto">
-          <NavLink className="nav-link" to="/">
-           | Inicio
-          </NavLink>
-          
-          <NavLink className="nav-link" to="/products">
-            | Catálogo | 
-          </NavLink>
 
-          <NavLink className="nav-link" to="/transactions">
-            Historial de pedidos |
-          </NavLink>
+          {!isAuth && (
+            <>
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+              <NavLink className="nav-link" to="/registro">
+                Registro
+              </NavLink>
+            </>
+          )}
+          {isAuth && (
+            <NavLink className="nav-link" to="/logout">
+              Logout
+            </NavLink>
+          )}
+         
         </Nav>
-        <FontAwesomeIcon icon={faCartPlus} size="2x" color="white" />
-        <Nav.Item className='ms-auto'>
-  
+        <a href="/cart">
+        <FontAwesomeIcon icon={faCartPlus} size="2x" color="white"  />
+        </a> 
 
-       <Nav.Link as={Link} to='/auth' className="login-button">
-                        Login
-                    </Nav.Link>
-        </Nav.Item>
-        
+
       </Container>
-      <img className="nav-img" src="https://res.cloudinary.com/dkcp72omy/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1673611681/products/platanogun_pkamwq.jpg"/>
+      <img className="nav-img" alt="Banana gun" src="https://res.cloudinary.com/dkcp72omy/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1673611681/products/platanogun_pkamwq.jpg"/>
     </Navbar>
   );
 };
 
 export default NavBar;
+

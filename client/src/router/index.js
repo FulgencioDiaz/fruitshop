@@ -1,8 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import PublicLayout from "../layouts/PublicLayout";
 import Registro from "../pages/Registro";
 import Auth from "../pages/Auth";
-import Products from "../pages/Products";
+/* import Products from "../pages/Products"; */
+import Cart from "../pages/Cart";
+import Catalog from "../pages/Catalog";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import Logout from "../pages/Logout";
+
+import ProtectedRoute from "../utils/ProtectedRoute";
 
 
 
@@ -14,20 +21,40 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Registro />,
+        element: <Catalog />,
       },
-      {
-        path: "/registro",
-        element: <Registro />,
-      },
-      {
+    /*   {
         path: "/products",
         element: <Products />,
+      }, */
+      {
+        path: "/cart",
+        element: <Cart />,
       },
  
       {
-        path: "/auth",
-        element: <Auth/>,
+        path: "/login",
+        element: (
+          <ProtectedRoute isAllowed={"isNotAuth"}>
+            <Login />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/registro",
+        element: (
+          <ProtectedRoute isAllowed={"isNotAuth"}>
+            <SignUp />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/logout",
+        element: (
+          <ProtectedRoute isAllowed={"isAuth"}>
+            <Logout />
+          </ProtectedRoute>
+        ),
       },
     
     ],

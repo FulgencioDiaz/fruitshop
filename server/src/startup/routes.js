@@ -8,7 +8,7 @@ const users = require("../routes/users");
 const auths = require("../routes/auths");
 const registro = require("../routes/registro");
 
-
+const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
 const express = require("express");
@@ -18,6 +18,7 @@ module.exports = function (app) {
   app.use(compression());
 
   app.use(express.json());
+  app.use(cors());
 
  
   app.use("/products", products);
