@@ -20,7 +20,7 @@ module.exports = function (app) {
   app.use(express.json());
   app.use(cors());
 
- 
+
   app.use("/products", products);
   app.use("/transactions", transactions);
   app.use("/users", users);

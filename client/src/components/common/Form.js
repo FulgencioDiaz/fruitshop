@@ -56,11 +56,12 @@ const Form = ({
         ></Input>
       ))}
 
-      <Button disabled={validate()} type=".btn-primary">
+      <Button disabled={validate()} type="submit">
         Submit
       </Button>
     </form>
     </div>
+   
   );
 };
 

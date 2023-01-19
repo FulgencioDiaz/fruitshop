@@ -15,7 +15,7 @@ const ListGroup = ({
           key={item[idPath]}
           onClick={() => onItemSelect(item)}
           active={item === selectedItem}
-          className="d-flex justify-content-between align-items-start"
+  
         >
           {item[propertyValue]}
         </ListGroupBootstrap.Item>

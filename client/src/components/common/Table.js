@@ -2,6 +2,7 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableBootstrap from "react-bootstrap/Table";
 
+
 const Table = ({ items, columns, onSort }) => {
   return (
     <>
@@ -9,6 +10,7 @@ const Table = ({ items, columns, onSort }) => {
     <TableBootstrap className="tableAllProducts">
       <TableHead  columns={columns} onSort={onSort} />
       <TableBody  items={items} columns={columns} className="eachCard"/>
+    
     </TableBootstrap>
 
 

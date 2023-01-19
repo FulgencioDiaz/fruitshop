@@ -6,13 +6,17 @@ import router from "./router/";
 import logger from "./services/loggerService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthProvider } from "./hooks/useAuth";
+
+import { CartProvider} from './hooks/useCart';
+import { AuthProvider } from './hooks/useAuth'
 logger.init();
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthProvider>
+<CartProvider>
+<AuthProvider>
     <RouterProvider router={router} />
   </AuthProvider>
+  </CartProvider>
 );

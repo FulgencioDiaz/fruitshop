@@ -55,7 +55,14 @@ color: white;
 
   
 .tableAllProducts{
-padding: 50px;
+padding: 40px;
+border: 10px solid rgb(138, 137, 137) !important;
 display:block;
+
+}
+
+.cartCard{
+background-color: black !important;
+
 
 }

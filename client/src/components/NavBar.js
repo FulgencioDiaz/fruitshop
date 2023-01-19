@@ -30,8 +30,18 @@ const NavBar = () => {
             </>
           )}
           {isAuth && (
+          <>
             <NavLink className="nav-link" to="/logout">
               Logout
+            </NavLink>
+              <NavLink className="nav-link" to="/catalog">
+              Catalog
+            </NavLink>
+          </>
+          )}
+           {isAdmin && (
+            <NavLink className="nav-link" to="/dataadmin">
+              DataAdmin
             </NavLink>
           )}
          

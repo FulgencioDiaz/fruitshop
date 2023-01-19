@@ -86,12 +86,13 @@ function Catalog() {
      
        
         <Col sm={12} md={8}>
-          <h2>Products ({pageProductsCount})</h2>
+          <h2>{pageProductsCount} variedades de fruta disponible</h2>
           <SearchBox
             value={searchedProductName}
             onSearch={handleProductNameSearch}
             placeholder="Buscar producto"
           />
+       
           <Table
             items={filteredProducts}
             columns={columns}

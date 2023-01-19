@@ -1,110 +1,106 @@
-import React from "react";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBRow,
-} from "mdb-react-ui-kit";
+import { useState } from "react";
+import _ from "lodash";
+
+import Spinner from "react-bootstrap/Spinner";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 
+import Table from "../components/common/Table";
+import SearchBox from "../components/common/SearchBox";
 
-const apiEndpoint = `http://localhost:3000/products/`;
+import useProducts from "../hooks/useProducts";
 
-const Cart = () => {
-     
-    return (
-    <>
+import paginate from "../utils/paginate";
 
-<section className="vh-100" >
-      <MDBContainer className="h-100">
-        <MDBRow className="justify-content-center align-items-center h-100">
-          <MDBCol>
-            <p>
-              <span className="h2">Carrito </span>
-              <span className="h4">(X item in your cart)</span>
-            </p>
+import AuthConsumer from "../hooks/useAuth";
 
-            <MDBCard className="mb-4">
-              <MDBCardBody className="p-4">
-                <MDBRow className="align-items-center">
-                  <MDBCol md="2">
-                    <MDBCardImage
-                      fluid
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
-                      alt="Generic placeholder image"
-                    />
-                  </MDBCol>
-                  <MDBCol md="2" className="d-flex justify-content-center">
-                    <div>
-                      <p className="small text-muted mb-4 pb-2">Name</p>
-                      <p className="lead fw-normal mb-0">iPad Air</p>
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="2" className="d-flex justify-content-center">
-                    <div>
-                      <p className="small text-muted mb-4 pb-2">Color</p>
-                      <p className="lead fw-normal mb-0">
-                        <MDBIcon
-                          fas
-                          icon="circle me-2"
-                          style={{ color: "#fdd8d2" }}
-                        />
-                        pink rose
-                      </p>
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="2" className="d-flex justify-content-center">
-                    <div>
-                      <p className="small text-muted mb-4 pb-2">KG</p>
-                      <p className="lead fw-normal mb-0">1</p>
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="2" className="d-flex justify-content-center">
-                    <div>
-                      <p className="small text-muted mb-4 pb-2">Price</p>
-                      <p className="lead fw-normal mb-0">$799</p>
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="2" className="d-flex justify-content-center">
-                    <div>
-                      <p className="small text-muted mb-4 pb-2">Total</p>
-                      <p className="lead fw-normal mb-0">$799</p>
-                    </div>
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
+const pageSize = 10;
 
-            <MDBCard className="mb-5">
-              <MDBCardBody className="p-4">
-                <div className="float-end">
-                  <p className="mb-0 me-5 d-flex align-items-center">
-                    <span className="small text-muted me-2">Order total:</span>
-                    <span className="lead fw-normal">$799</span>
-                  </p>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
+const columns = [
+  {
+    path: "image",
+    label: "Imagen",
+    component: (image) => <img alt="producto" width="100" src={image} />,
+  },
+  { path: "name", label: "Nombre", sortable: true },
+  { path: "price", label: "Precio x kg", sortable: true },
 
-            <div className="d-flex justify-content-end">
-              <MDBBtn color="light" size="lg" className="me-2">
-                Continue shopping
-              </MDBBtn>
-              <MDBBtn size="lg">Add to cart</MDBBtn>
-            </div>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
-   
+  
 
-    </>
-    );
+];
+
+function Cart() {
+  const { isLoadingProducts, products } = useProducts();
+ 
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [sortedColumn, setSortedColumn] = useState({});
+  const [searchedProductName, setSearchedProductName] = useState("");
+
+  const [user, dispatch] = AuthConsumer();
+  console.log(user);
+ 
+
+  const handleProductNameSearch = (query) => {
+    setSearchedProductName(query);
+    setCurrentPage(1);
   };
-  
-  export default Cart;
-  
+
+  const handleColumnSort = (column) => {
+    const order = sortedColumn.order === "asc" ? "desc" : "asc";
+
+    setSortedColumn({ ...column, order });
+  };
+
+  if (isLoadingProducts)
+    return <Spinner animation="border" />;
+
+  let allProducts = products;
+
+  if (!_.isEmpty(sortedColumn))
+    allProducts = _.orderBy(
+      allProducts,
+      [sortedColumn.path],
+      [sortedColumn.order]
+    );
+
+  if (searchedProductName) {
+    allProducts = allProducts.filter((product) =>
+      product.name.includes(searchedProductName)
+    );
+  }
+
+  const [filteredProducts, pageProductsCount] = paginate(
+    allProducts,
+    pageSize,
+    currentPage
+  );
+
+  return (
+    <>
+ 
+      <Row >
+     
+       
+        <Col >
+          {pageProductsCount} variedades de fruta seleccionadas
+
+       
+          <Table
+            items={filteredProducts}
+            columns={columns}
+            onSort={handleColumnSort}
+          
+          />  
+   
+        </Col>
+      </Row>
+ 
+   
+     </>
+     );
+}
+
+export default Cart;

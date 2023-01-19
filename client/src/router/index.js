@@ -1,13 +1,13 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import PublicLayout from "../layouts/PublicLayout";
-import Registro from "../pages/Registro";
-import Auth from "../pages/Auth";
-/* import Products from "../pages/Products"; */
+
+
 import Cart from "../pages/Cart";
 import Catalog from "../pages/Catalog";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Logout from "../pages/Logout";
+
 
 import ProtectedRoute from "../utils/ProtectedRoute";
 
@@ -20,13 +20,15 @@ const router = createBrowserRouter([
 
     children: [
       {
-        index: true,
-        element: <Catalog />,
+       
+        path: "/catalog",
+        element: (
+          <ProtectedRoute isAllowed={"isAuth"}>
+            <Catalog />
+          </ProtectedRoute>
+        ),
       },
-    /*   {
-        path: "/products",
-        element: <Products />,
-      }, */
+  
       {
         path: "/cart",
         element: <Cart />,
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute isAllowed={"isAuth"}>
             <Logout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dataadmin",
+        element: (
+          <ProtectedRoute isAllowed={"isAdmin"}>
+            hola
           </ProtectedRoute>
         ),
       },
